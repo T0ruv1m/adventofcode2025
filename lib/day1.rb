@@ -16,9 +16,21 @@ class Dial
     @password
   end
 
+  def move(movement)
+    direction = movement[0]
+    clicks = movement[1..].to_i
+    click_count = 0
+
+    while click_count < clicks
+      click(direction)
+      click_count += 1
+    end
+
+  end
+
   def click(direction)
     if direction == 'R'
-      @position += 1 
+      @position += 1
     elsif direction == 'L'
       @position -= 1
     end
@@ -33,18 +45,6 @@ class Dial
       @password += 1
     end
   end
-
-  def move(movement)
-    direction = movement[0]
-    clicks = movement[1..].to_i
-    x = 0
-
-    while x < clicks
-      click(direction)
-      x += 1
-    end
-  end
-
 end
 
 if __FILE__ == $0
